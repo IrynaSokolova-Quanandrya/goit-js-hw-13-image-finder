@@ -25,12 +25,6 @@ clearPage(){
     this.page = 1;
 }
 
-// get searchQuery(){
-//     return this.query;
-// }
 
-// set searchQuery(searchQuery){
-//     this.query = searchQuery;
-// }
 }
 
