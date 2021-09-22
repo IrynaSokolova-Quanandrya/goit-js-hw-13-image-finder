@@ -12,7 +12,7 @@ defaultModules.set(PNotifyMobile, {});
 
 
 
-const {gallaryList, searchForm, gallaryItem, photoCard, searchBtn, loadMoreBtn} = refs;
+const {gallaryList, searchForm} = refs;
 
 const apiService = new ApiService();
 const loadMoreButton = new LoadMoreBtn({
@@ -33,14 +33,15 @@ function onSearch(e){
             delay: 1000,
             hide: true,
           });
-
-    // if(hits.lenght === 0)
-    // return alert({
-    //         text: 'Opps! No request! Try again!',
-    //         type: 'error',
-    //         delay: 1000,
-    //         hide: true,
-    //       });
+    apiService.fetchImg().then(hits =>{
+    if(hits.length === 0)
+    return alert({
+            text: 'Opps! Invalid request! Try again!',
+            type: 'error',
+            delay: 1000,
+            hide: true,
+          });
+        });
     loadMoreButton.show();
     apiService.clearPage();
     clearGallaryList();
