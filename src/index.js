@@ -3,7 +3,7 @@ import './sass/main.scss';
 import refs from './js/refs';
 import ApiService from './js/api-service';
 import LoadMoreBtn from './js/load-more-btn';
-import gallaryTpl from './templates/gallary.hbs';
+import galleryTpl from './templates/gallery.hbs';
 import { alert, defaultModules } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import * as PNotifyMobile from '../node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/BrightTheme.css';
@@ -12,7 +12,7 @@ defaultModules.set(PNotifyMobile, {});
 
 
 
-const {gallaryList, searchForm} = refs;
+const {galleryList, searchForm} = refs;
 
 const apiService = new ApiService();
 const loadMoreButton = new LoadMoreBtn({
@@ -44,14 +44,14 @@ function onSearch(e){
         });
     loadMoreButton.show();
     apiService.clearPage();
-    clearGallaryList();
+    clearGalleryList();
     fetchHits();
     
     }
     
 function onLoadMore(){
   fetchHits();
-  gallaryList.scrollIntoView({
+  galleryList.scrollIntoView({
   behavior: 'smooth',
   block: 'end',
 });
@@ -61,17 +61,17 @@ function onLoadMore(){
 function fetchHits(){
   loadMoreButton.disable();
      apiService.fetchImg().then(hits => {
-      createGallaryList(hits);
+      createGalleryList(hits);
       loadMoreButton.enable();
      });
 }
 
-function createGallaryList(hits){
-  gallaryList.insertAdjacentHTML('beforeend', gallaryTpl(hits));
+function createGalleryList(hits){
+  galleryList.insertAdjacentHTML('beforeend', galleryTpl(hits));
 }
 
-function clearGallaryList(){
-  gallaryList.innerHTML = '';
+function clearGalleryList(){
+  galleryList.innerHTML = '';
 }
 
  
