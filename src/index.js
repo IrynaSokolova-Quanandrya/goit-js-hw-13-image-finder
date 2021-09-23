@@ -1,5 +1,5 @@
 
-import './sass/main.scss';
+import './css/styles.css';
 import refs from './js/refs';
 import ApiService from './js/api-service';
 import LoadMoreBtn from './js/load-more-btn';
