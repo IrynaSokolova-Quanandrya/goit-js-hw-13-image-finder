@@ -16,7 +16,8 @@ const {galleryList, searchForm} = refs;
 
 const apiService = new ApiService();
 const loadMoreButton = new LoadMoreBtn({
-  selector: '[data-action="load-more"]'
+  selector: '[data-action="load-more"]',
+  hidden: true,
 });
 
 
