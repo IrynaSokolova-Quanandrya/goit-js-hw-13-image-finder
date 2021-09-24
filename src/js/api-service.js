@@ -24,7 +24,5 @@ incrementPage(){
 clearPage(){
     this.page = 1;
 }
-
-
 }
 

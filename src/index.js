@@ -27,52 +27,66 @@ loadMoreButton.refs.button.addEventListener('click', onLoadMore);
 function onSearch(e){
     e.preventDefault();
     apiService.query = e.currentTarget.elements.query.value.trim();
-    if(!apiService.query)
-    return alert({
-            text: 'Opps! No request! Try again!',
-            type: 'error',
-            delay: 1000,
-            hide: true,
-          });
-    apiService.fetchImg().then(hits =>{
-    if(hits.length === 0)
-    return alert({
-            text: 'Opps! Invalid request! Try again!',
-            type: 'error',
-            delay: 1000,
-            hide: true,
-          });
-        });
+    if(!apiService.query){
+      return alert({
+        text: 'Opps! No request! Try again!',
+        type: 'error',
+        delay: 1000,
+        hide: true,
+      })
+    };    
+    apiService.fetchImg()
+    .then(hits =>{
+    if(hits.length === 0){
+      return alert({
+        text: 'Opps! Invalid request! Try again!',
+        type: 'error',
+        delay: 1000,
+        hide: true,
+
+      });
+      
+    } 
+    });
     loadMoreButton.show();
     apiService.clearPage();
     clearGalleryList();
     fetchHits();
-    
+    searchForm.reset()  
     }
     
 function onLoadMore(){
   fetchHits();
-  galleryList.scrollIntoView({
-  behavior: 'smooth',
-  block: 'end',
-});
-
     }
 
+    function smoothScroll(){
+      galleryList.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
+   
+  
 function fetchHits(){
   loadMoreButton.disable();
      apiService.fetchImg().then(hits => {
       createGalleryList(hits);
+      smoothScroll();
       loadMoreButton.enable();
+      
      });
 }
 
 function createGalleryList(hits){
   galleryList.insertAdjacentHTML('beforeend', galleryTpl(hits));
+   
 }
 
 function clearGalleryList(){
   galleryList.innerHTML = '';
 }
 
+ 
+   
+  
  
