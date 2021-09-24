@@ -24,9 +24,6 @@ img {
   padding: 15px;
   margin-bottom: 25px;
   color: #fff;
-  
-}
-.search-form{
   background-image: repeating-linear-gradient(
     -45deg,
     #60bc74,
@@ -47,6 +44,9 @@ background: #f5f4fa;
 border-radius: 4px;
 text-align: center;
 
+}
+.btn-primary{
+  margin-left: 10px;
 }
 .button:hover,
 .button:focus{
