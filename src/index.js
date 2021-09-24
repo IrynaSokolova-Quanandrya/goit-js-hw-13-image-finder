@@ -59,13 +59,13 @@ function onLoadMore(){
   fetchHits();
     }
 
-    function smoothScroll(){
-      galleryList.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
-    }
-   
+function smoothScroll(){
+  galleryList.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
+}
+
   
 function fetchHits(){
   loadMoreButton.disable();
