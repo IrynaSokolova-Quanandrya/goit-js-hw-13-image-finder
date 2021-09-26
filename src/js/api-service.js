@@ -8,13 +8,27 @@ class ApiService {
         this.query = '';
         this.page = 1;
     }
-fetchImg(){
-return fetch(`${url}/?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${MY_KEY}`)
-    .then(r=>r.json())
-    .then(({hits}) => {
-        this.incrementPage();
+async fetchImg(){         
+     try{
+       let response = await fetch(`${url}/?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${MY_KEY}`);
+        let data = await response.json();
+        let hits = await data.hits 
+        this.incrementPage();   
         return hits;
-    })
+     }
+     catch(error){
+         console.log(error)}          
+            
+
+
+
+
+    // return fetch(`${url}/?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${MY_KEY}`)
+//     .then(r=>r.json())
+//     .then(({hits}) => {
+//         this.incrementPage();
+//         return hits;
+//     })
 }
 
 incrementPage(){
@@ -25,4 +39,4 @@ clearPage(){
     this.page = 1;
 }
 }
-
+ 

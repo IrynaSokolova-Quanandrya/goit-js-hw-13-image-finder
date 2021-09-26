@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "infinite-scroll": "^4.0.1",
-    "material-design-icons": "^3.0.1"
+    "material-design-icons": "^3.0.1",
+    "regenerator-runtime": "^0.13.9"
   }
 }

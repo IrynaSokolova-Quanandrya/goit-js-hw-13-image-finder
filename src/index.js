@@ -1,4 +1,5 @@
 
+import regeneratorRuntime from "regenerator-runtime";
 import './css/styles.css';
 import refs from './js/refs';
 import ApiService from './js/api-service';
@@ -25,49 +26,42 @@ searchForm.addEventListener('submit', onSearch);
 loadMoreButton.refs.button.addEventListener('click', onLoadMore);
 
 function onSearch(e){
-    e.preventDefault();
-    apiService.query = e.currentTarget.elements.query.value.trim();
-    if(!apiService.query){
+ e.preventDefault();
+  apiService.query = e.currentTarget.elements.query.value.trim();
+if(!apiService.query){
       return alert({
         text: 'Opps! No request! Try again!',
         type: 'error',
         delay: 1000,
         hide: true,
       })
-    };    
-    apiService.fetchImg()
-    .then(hits =>{
+    }; 
+    
+    apiService.fetchImg() 
+.then(hits =>{
     if(hits.length === 0){
       return alert({
         text: 'Opps! Invalid request! Try again!',
         type: 'error',
         delay: 1000,
         hide: true,
-
       });
-      
-    } 
-    });
-    loadMoreButton.show();
+    }       
+    if (hits.length >=1 ){
+      createGalleryList(hits);
+      smoothScroll();
+      loadMoreButton.enable();
+      loadMoreButton.show();
+    }
+      })
+      loadMoreButton.disable();
+    
     apiService.clearPage();
     clearGalleryList();
-    fetchHits();
-    searchForm.reset()  
-    }
-    
-function onLoadMore(){
-  fetchHits();
-    }
-
-function smoothScroll(){
-  galleryList.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
+    searchForm.reset();  
 }
-
   
-function fetchHits(){
+function onLoadMore(){
   loadMoreButton.disable();
      apiService.fetchImg().then(hits => {
       createGalleryList(hits);
@@ -75,6 +69,13 @@ function fetchHits(){
       loadMoreButton.enable();
       
      });
+  }
+
+function smoothScroll(){
+  galleryList.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
 }
 
 function createGalleryList(hits){
@@ -86,7 +87,3 @@ function clearGalleryList(){
   galleryList.innerHTML = '';
 }
 
- 
-   
-  
- 
