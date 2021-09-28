@@ -1,9 +1,6 @@
-
-// import regeneratorRuntime from "regenerator-runtime";
 import * as basicLightbox from 'basiclightbox'
 import './css/styles.css';
 import refs from './js/refs';
-// import './js/basic-lightbox';
 import ApiService from './js/api-service';
 import LoadMoreBtn from './js/load-more-btn';
 import galleryTpl from './templates/gallery.hbs';
@@ -17,8 +14,7 @@ defaultModules.set(PNotifyMobile, {});
 
 const {galleryList, searchForm} = refs;
 console.log(refs);
-// const apiService = ApiService;
-// console.log(apiService);
+
 
 
 
@@ -28,31 +24,7 @@ const loadMoreButton = new LoadMoreBtn({
   selector: '[data-action="load-more"]',
   hidden: true,
 });
-// searchForm.addEventListener('submit', onSearch);
-// function onSearch(e){
-//     console.log(e);
-//     e.preventDefault();
-//     apiService.query = e.currentTarget.elements.query.value.trim();
-//     console.log(apiService.query);
-//     if(!apiService.query){
-//             return alert({
-//             text: 'Opps! No request! Try again!',
-//             type: 'error',
-//             delay: 1000,
-//             hide: true,
-//             })
-//             }; 
-//       apiService.fetchImg();
-//       loadMoreButton.disable();
-// }
-
-// loadMoreButton.refs.button.addEventListener('click', onLoadMore);
-// function onLoadMore(){
-//       loadMoreButton.disable();
-//          apiService.fetchImg();
-//         loadMoreButton.enable();
-          
-// }
+// 
       
 
 searchForm.addEventListener('submit', onSearch);
@@ -60,9 +32,7 @@ loadMoreButton.refs.button.addEventListener('click', onFetch);
 
 function onSearch(e){
  e.preventDefault();
-
-  apiService.query = e.currentTarget.elements.query.value.trim();
-  
+ apiService.query = e.currentTarget.elements.query.value.trim();
 if(!apiService.query){
       return alert({
         text: 'Opps! No request! Try again!',
@@ -77,36 +47,7 @@ if(!apiService.query){
     onFetch();
 //     console.log(apiService.fetchImg())
  
-//   apiService.fetchImg() 
-//   .then(hits =>{
-//   console.log(hits);
-//     if(hits.length === 0){
-//       return alert({
-//         text: 'Opps! Invalid request! Try again!',
-//         type: 'error',
-//         delay: 1000,
-//         hide: true,
-//       });
-//     }
-// loadMoreButton.disable();
-//     if (hits.length >=1 ){
-//       createGalleryList(hits);
-//       smoothScroll();
-//       loadMoreButton.enable();
-      
-      
-//     }})
-    
-      
-      
-     
-//       loadMoreButton.show();
-//     // loadMoreButton.disable();
-//     apiService.clearPage();
-//     // console.log(apiService.clearPage());
-//     clearGalleryList();
-//     searchForm.reset();  
-}
+  }
   
 function onFetch(){
   loadMoreButton.disable();
