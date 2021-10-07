@@ -92,9 +92,15 @@ function clearGalleryList(){
 
 galleryList.addEventListener('click', (e)=>{
   console.log(e);
-if(e.target.img){
-  basicLightbox.create(`
-		<img src=${e.target.dataset['source']} width="1400" height="900">
-	`).show()
+  const target = e.target;
+if(target.nodeName === 'IMG') {
+   const instance = basicLightbox.create(`
+   <div class="modal">
+   <img src=${e.target.dataset.source} width="1400" height="900">
+   </div>
+   `);
+   instance.show();
 }
+ 
+
 })
